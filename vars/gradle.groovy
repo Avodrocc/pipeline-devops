@@ -25,10 +25,11 @@ def call(stages){
 /*        echo 'El pipeline se ejecutará completo'
         allStages() */
         echo 'El pipeline se ejecutará segun la rama ' + env.GIT_BRANCH
-   //     if (env.GIT_BRANCH == 'origin/develop')
-   //         stagesCI
-   //     if (env.GIT_BRANCH == 'origin/release')
-   //         stagesCD
+        String rama = env.GIT_BRANCH
+        if (rama.indexOf("develop") > 0 || rama.indexOf("feature") > 0)
+            stagesCI
+        if (rama.indexOf('release') > 0)
+            stagesCD
     } 
     else {
         echo 'Stages a ejecutar :' + stages

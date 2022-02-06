@@ -17,7 +17,7 @@ pipeline {
     }
     parameters {
         choice choices: ['Maven', 'Gradle'], description: 'Seleccione herramienta de compilacion', name: 'compileTool'
-        text description: 'Enviar los stages separados por ",". Vacío significa TODOS', name: 'stages'
+        text description: 'Enviar los stages separados por ";". Vacío significa TODOS', name: 'stages'
     }
     stages {
         stage("Pipeline"){

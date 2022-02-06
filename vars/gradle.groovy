@@ -4,7 +4,7 @@
 	ejecucion.call()
 */
 def call(stages){
-    def listStages = stages.split(";")
+  //  def listStages = stages.split(";")
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
@@ -15,21 +15,30 @@ def call(stages){
         'curl_jar': 'stageCurlJar'
     ]
 
+    def arrayUtils = new array.arrayExtentions();
+    def stagesArray = []
+    stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
+
     if (stages.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
     } 
     else {
         echo 'Stages a ejecutar :' + stages
-        listStagesOrder.each { stageName, stageFunction ->
+      /*  listStagesOrder.each { stageName, stageFunction ->
             listStages.each{ stageToExecute ->
                 if(stageName.equals(stageToExecute)){
                     echo 'Ejecutando ' + stageFunction
                     "${stageFunction}"()
                  }
             }
+        } */
+        stagesArray.each { stageFunction ->
+            echo 'Ejecutando ' + stageFunction
+            "${stageFunction}"()
         }
-    }
+
+    } 
 }
 
 

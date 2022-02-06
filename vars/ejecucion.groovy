@@ -24,7 +24,7 @@ pipeline {
         stage("Pipeline"){
             steps {
                 script{
-                  switch(params.compileTool)
+                 /* switch(params.compileTool)
                     {
                         case 'Maven':
                             maven.call(params.stages)
@@ -32,9 +32,8 @@ pipeline {
                         case 'Gradle':
                             gradle.call(params.stages)
                         break;
-                        default:
-                          gradle.call(params.stages)
-                    }
+                    } */
+                    gradle.call(params.stages)
                 }
             }
             post{

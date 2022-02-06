@@ -4,6 +4,8 @@
 	ejecucion.call()
 */
 def call(stages){
+    figlet "maven"
+
   stage("Paso 1: Compilar"){
     sh "mvn clean compile -e"
   }

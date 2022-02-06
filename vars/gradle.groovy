@@ -6,6 +6,7 @@
 import utilities.*
 
 def call(stages){
+    figlet "gradle"
   //  def listStages = stages.split(";")
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
@@ -26,9 +27,12 @@ def call(stages){
         allStages() */
         echo 'El pipeline se ejecutará segun la rama ' + env.GIT_BRANCH
         String rama = env.GIT_BRANCH
-        if (rama.indexOf("develop") > 0 || rama.indexOf("feature") > 0)
+        if (rama.indexOf("develop") > 0 || rama.indexOf("feature") > 0) {
+            figlet "Integración Continua"
             stagesCI()
+        }
         if (rama.indexOf('release') > 0)
+            figlet "Despliegue Continuo"
             stagesCD()
     } 
     else {

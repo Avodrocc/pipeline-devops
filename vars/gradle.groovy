@@ -36,7 +36,7 @@ def call(stages){
         }
 ​
     }
-
+}
 
 
 def stageCleanBuildTest(){

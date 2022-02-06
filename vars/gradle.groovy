@@ -26,8 +26,9 @@ def call(stages){
                 echo 'Ejecutando ' + stageFunction
                 "${stageFunction}"()
                 }
-    */
+    
             }
+            */
         }
 ​
     }

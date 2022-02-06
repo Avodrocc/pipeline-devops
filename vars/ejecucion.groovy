@@ -20,8 +20,8 @@ pipeline {
         text description: 'Enviar los stages separados por ";". Vacío significa TODOS', name: 'stages'
     }
 
-    sh "echo  ${env.STAGE}"
-    sh "echo  ${env.GIT_BRANCH}"
+    echo  echo 'Valor STAGE = ' + env.STAGE
+    echo  echo 'Valor GIT_BRANCH = ' + env.GIT_BRANCH
 
     stages {
         stage("Pipeline"){

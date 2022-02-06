@@ -4,12 +4,6 @@
 	ejecucion.call()
 */
 def call(stages){
-    def stagesList = stages.split(";")
-
-    stagesList.each{
-        println("Stages enviados ===> ${it}")
-    }
-
 
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',

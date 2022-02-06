@@ -22,8 +22,15 @@ def call(stages){
     stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
 
     if (stages.isEmpty()) {
-        echo 'El pipeline se ejecutará completo'
-        allStages()
+        //echo 'El pipeline se ejecutará completo'
+        //allStages()
+
+        echo 'El pipeline se ejecutará segun la rama'
+        if (env.GIT_BRANCH == 'origin/develop')
+           stagesCI
+        if (env.GIT_BRANCH == 'origin/release')
+            stagesCD
+
     } 
     else {
         echo 'Stages a ejecutar :' + stages
@@ -127,6 +134,28 @@ def stageCurlJar(){
     }
 }
 
+def stageRest(){
+    env.DESCRTIPTION_STAGE = "Paso 8: Rest"
+    stage("${env.DESCRTIPTION_STAGE}"){
+        figlet "REST"
+    }
+}
+
+def stagesCI(){
+    stageCleanBuildTest()
+    stageSonar()
+    stageRunSpringCurl()
+    stageRest()
+    stageUploadNexus()
+}
+
+def stagesCD(){
+    stageDownloadNexus()
+    stageRunJar()
+    stageRest()
+    stageUploadNexus()
+}
+
 def allStages(){
     stageCleanBuildTest()
     stageSonar()
@@ -136,5 +165,7 @@ def allStages(){
     stageRunJar()
     stageCurlJar()
 }
+
+
 
 return this;

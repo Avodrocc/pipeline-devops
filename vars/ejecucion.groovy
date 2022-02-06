@@ -24,8 +24,6 @@ pipeline {
         stage("Pipeline"){
             steps {
                 script{
-                    echo 'Valor STAGE = ' + env.STAGE
-                    echo 'Valor GIT_BRANCH = ' + env.GIT_BRANCH
                   switch(params.compileTool)
                     {
                         case 'Maven':

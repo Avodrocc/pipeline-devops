@@ -16,11 +16,8 @@ pipeline {
         NEXUS_PASSWORD     = credentials('nexus-user-pass')
     }
     parameters {
-        choice(
-            name:'compileTool',
-            choices: ['Maven', 'Gradle'],
-            description: 'Seleccione herramienta de compilacion'
-        )
+        choice choices: ['Maven', 'Gradle'], description: 'Seleccione herramienta de compilacion', name: 'compileTool'
+        text description: 'Enviar los stages separados por ",". Vacío significa TODOS', name: 'stages'
     }
     stages {
         stage("Pipeline"){
@@ -29,14 +26,10 @@ pipeline {
                   switch(params.compileTool)
                     {
                         case 'Maven':
-                          //  def ejecucion = load 'maven.groovy'
-                          //  ejecucion.call()
-                          maven.call()
+                          maven.call(params.stages)
                         break;
                         case 'Gradle':
-                          //  def ejecucion = load 'gradle.groovy'
-                          //  ejecucion.call()
-                          gradle.call()
+                          gradle.call(params.stages)
                         break;
                     }
                 }

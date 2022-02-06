@@ -3,6 +3,8 @@
 	def ejecucion = load 'script.groovy'
 	ejecucion.call()
 */
+import utilities.*
+
 def call(stages){
   //  def listStages = stages.split(";")
     def listStagesOrder = [

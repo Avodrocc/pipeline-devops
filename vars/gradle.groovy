@@ -4,7 +4,7 @@
 	ejecucion.call()
 */
 def call(stages){
-
+    def listStages = stages.split(";")
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
@@ -18,20 +18,18 @@ def call(stages){
     if (stages.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
-    } else {
+    } 
+    else {
         echo 'Stages a ejecutar :' + stages
-  /*      listStagesOrder.each { stageName, stageFunction ->
-            stages.each{ stageToExecute ->//variable as param
+        listStagesOrder.each { stageName, stageFunction ->
+            listStages.each{ stageToExecute ->
                 if(stageName.equals(stageToExecute)){
-                echo 'Ejecutando ' + stageFunction
-                "${stageFunction}"()
-                }
-    
-            }
-            */
+                    echo 'Ejecutando ' + stageFunction
+                    "${stageFunction}"()
+                 }
         }
-​
     }
+
 }
 
 

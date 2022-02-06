@@ -19,6 +19,10 @@ pipeline {
         choice choices: ['Maven', 'Gradle'], description: 'Seleccione herramienta de compilacion', name: 'compileTool'
         text description: 'Enviar los stages separados por ";". Vacío significa TODOS', name: 'stages'
     }
+
+    sh "echo  ${env.STAGE}"
+    sh "echo  ${env.GIT_BRANCH}"
+
     stages {
         stage("Pipeline"){
             steps {
@@ -26,10 +30,10 @@ pipeline {
                   switch(params.compileTool)
                     {
                         case 'Maven':
-                          maven.call(params.stages)
+                       //   maven.call(params.stages)
                         break;
                         case 'Gradle':
-                          gradle.call(params.stages)
+                       //   gradle.call(params.stages)
                         break;
                     }
                 }

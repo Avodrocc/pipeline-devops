@@ -20,13 +20,12 @@ pipeline {
         text description: 'Enviar los stages separados por ";". Vacío significa TODOS', name: 'stages'
     }
 
-    echo 'Valor STAGE = ' + env.STAGE
-    echo 'Valor GIT_BRANCH = ' + env.GIT_BRANCH
-
     stages {
         stage("Pipeline"){
             steps {
                 script{
+                    echo 'Valor STAGE = ' + env.STAGE
+                    echo 'Valor GIT_BRANCH = ' + env.GIT_BRANCH
                   switch(params.compileTool)
                     {
                         case 'Maven':

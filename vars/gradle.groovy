@@ -15,7 +15,7 @@ def call(stages){
         'curl_jar': 'stageCurlJar'
     ]
 
-        if (stages.isEmpty()) {
+    if (stages.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
         allStages()
     } else {
@@ -24,7 +24,7 @@ def call(stages){
             stages.each{ stageToExecute ->//variable as param
                 if(stageName.equals(stageToExecute)){
                 echo 'Ejecutando ' + stageFunction
-                "${stageFunction}"()
+              //  "${stageFunction}"()
                 }
             }
         }
